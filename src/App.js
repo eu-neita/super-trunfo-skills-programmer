@@ -13,6 +13,28 @@ class App extends React.Component {
     cardImage: '',
     cardRare: '',
     cardTrunfo: false,
+    isSaveButtonDisabled: true,
+  };
+
+  veryfyInputs = () => {
+    const { cardName, cardDescription, cardImage, cardRare, cardAttr1,
+      cardAttr2, cardAttr3 } = this.state;
+    const inputsCointain = cardName !== '' && cardDescription !== ''
+    && cardImage !== '' && cardRare !== '';
+    const MAXSUM_ATR = 210;
+    const MAX_ATR = 90;
+    const MIN_ATR = 0;
+    const maxValuesAtr = [Number(cardAttr1) + Number(cardAttr2) + Number(cardAttr3)]
+     <= MAXSUM_ATR;
+    const minValuesAtr1 = Number(cardAttr1) >= MIN_ATR && Number(cardAttr1) <= MAX_ATR;
+    const minValuesAtr2 = Number(cardAttr2) >= MIN_ATR && Number(cardAttr2) <= MAX_ATR;
+    const minValuesAtr3 = Number(cardAttr3) >= MIN_ATR && Number(cardAttr3) <= MAX_ATR;
+    const valueBol = true;
+    if (inputsCointain && maxValuesAtr && minValuesAtr1
+      && minValuesAtr2 && minValuesAtr3) {
+      return !valueBol;
+    }
+    return valueBol;
   };
 
   handleInputChange = ({ target }) => {
@@ -20,12 +42,12 @@ class App extends React.Component {
     const input = type === checkbox ? checked : value;
     this.setState({
       [name]: input,
-    });
+    }, () => this.setState({ isSaveButtonDisabled: this.veryfyInputs() }));
   };
 
   render() {
     const { cardName, cardDescription, cardAttr1, cardAttr2,
-      cardAttr3, cardImage, cardRare, cardTrunfo } = this.state;
+      cardAttr3, cardImage, cardRare, cardTrunfo, isSaveButtonDisabled } = this.state;
     return (
       <div>
         <h1>Tryunfo</h1>
@@ -39,6 +61,7 @@ class App extends React.Component {
           cardRare={ cardRare }
           cardTrunfo={ cardTrunfo }
           onInputChange={ this.handleInputChange }
+          isSaveButtonDisabled={ isSaveButtonDisabled }
         />
         <Card
           cardName={ cardName }
@@ -64,6 +87,7 @@ App.propTypes = {
   cardImage: PropTypes.string,
   cardRare: PropTypes.string,
   cardTrunfo: PropTypes.bool,
+  isSaveButtonDisabled: PropTypes.bool,
 }.isRequired;
 
 export default App;
