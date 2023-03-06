@@ -14,6 +14,8 @@ class App extends React.Component {
     cardRare: '',
     cardTrunfo: false,
     isSaveButtonDisabled: true,
+    cards: [],
+    hasTrunfo: false,
   };
 
   veryfyInputs = () => {
@@ -38,16 +40,52 @@ class App extends React.Component {
   };
 
   handleInputChange = ({ target }) => {
-    const { name, type, checkbox, checked, value } = target;
-    const input = type === checkbox ? checked : value;
+    const { name, type, checked, value } = target;
+    const input = type === 'checkbox' ? checked : value;
     this.setState({
       [name]: input,
     }, () => this.setState({ isSaveButtonDisabled: this.veryfyInputs() }));
   };
 
+  veryfyTrunfo = () => {
+    const { cards } = this.state;
+    const findTunf = cards.some((has) => has.superTrunfo === true);
+    if (findTunf) {
+      this.setState({ hasTrunfo: true });
+    }
+  };
+
+  savedCards = (event) => {
+    event.preventDefault();
+    const { cardName, cardDescription, cardImage, cardRare,
+      cardAttr2, cardAttr3, cardAttr1, cardTrunfo } = this.state;
+    const cardsObj = {
+      name: cardName,
+      description: cardDescription,
+      image: cardImage,
+      rare: cardRare,
+      attr1: cardAttr1,
+      attr2: cardAttr2,
+      attr3: cardAttr3,
+      superTrunfo: cardTrunfo,
+    };
+    this.setState((prevState) => ({
+      cards: [...prevState.cards, cardsObj],
+      cardName: '',
+      cardDescription: '',
+      cardImage: '',
+      cardRare: 'normal',
+      cardAttr1: '0',
+      cardAttr2: '0',
+      cardAttr3: '0',
+      cardTrunfo: false,
+    }), this.veryfyTrunfo);
+  };
+
   render() {
     const { cardName, cardDescription, cardAttr1, cardAttr2,
-      cardAttr3, cardImage, cardRare, cardTrunfo, isSaveButtonDisabled } = this.state;
+      cardAttr3, cardImage, cardRare, cardTrunfo, isSaveButtonDisabled,
+      hasTrunfo } = this.state;
     return (
       <div>
         <h1>Tryunfo</h1>
@@ -62,6 +100,8 @@ class App extends React.Component {
           cardTrunfo={ cardTrunfo }
           onInputChange={ this.handleInputChange }
           isSaveButtonDisabled={ isSaveButtonDisabled }
+          onSaveButtonClick={ this.savedCards }
+          hasTrunfo={ hasTrunfo }
         />
         <Card
           cardName={ cardName }
@@ -88,6 +128,7 @@ App.propTypes = {
   cardRare: PropTypes.string,
   cardTrunfo: PropTypes.bool,
   isSaveButtonDisabled: PropTypes.bool,
+  hasTrunfo: PropTypes.bool,
 }.isRequired;
 
 export default App;
