@@ -12,7 +12,7 @@ class Form extends Component {
     const { cardName, cardDescription, cardAttr1, cardAttr2,
       cardAttr3, cardImage, cardRare, cardTrunfo, hasTrunfo,
       isSaveButtonDisabled, onInputChange, onSaveButtonClick,
-      filterInput } = this.props;
+      filterInput, filterInputRare } = this.props;
     return (
       <form>
         <label htmlFor="name-input">
@@ -128,6 +128,21 @@ class Form extends Component {
           />
         </label>
 
+        <label data-testid="rare-label-filter" htmlFor="rare-filter">
+          filtroRaridade
+          <select
+            name="filterInputRare"
+            data-testid="rare-filter"
+            value={ filterInputRare }
+            onChange={ onInputChange }
+          >
+            <option value="todas">todas</option>
+            <option value="normal">normal</option>
+            <option value="raro">raro</option>
+            <option value="muito raro">muito raro</option>
+          </select>
+        </label>
+
       </form>
     );
   }
@@ -146,6 +161,7 @@ Form.propTypes = {
   onInputChange: PropTypes.func,
   onSaveButtonClick: PropTypes.func,
   filterInput: PropTypes.string,
+  filterInputRare: PropTypes.string,
 }.isRequired;
 
 export default Form;

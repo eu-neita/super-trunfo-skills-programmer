@@ -17,6 +17,7 @@ class App extends React.Component {
     cards: [],
     hasTrunfo: false,
     filterInput: '',
+    filterInputRare: 'todas',
   };
 
   veryfyInputs = () => {
@@ -95,8 +96,9 @@ class App extends React.Component {
   render() {
     const { cardName, cardDescription, cardAttr1, cardAttr2,
       cardAttr3, cardImage, cardRare, cardTrunfo, isSaveButtonDisabled, cards,
-      hasTrunfo, filterInput } = this.state;
-    const cardsRender = cards.filter((card) => card
+      hasTrunfo, filterInput, filterInputRare } = this.state;
+    const cardsRender = cards.filter((card) => (filterInputRare === 'todas' ? card : card
+      .rare === filterInputRare)).filter((card) => card
       .name.includes(filterInput)).map((card, i) => (
       (<Card
         key={ card.name }
