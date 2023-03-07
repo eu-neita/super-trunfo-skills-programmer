@@ -11,7 +11,8 @@ class Form extends Component {
   render() {
     const { cardName, cardDescription, cardAttr1, cardAttr2,
       cardAttr3, cardImage, cardRare, cardTrunfo, hasTrunfo,
-      isSaveButtonDisabled, onInputChange, onSaveButtonClick } = this.props;
+      isSaveButtonDisabled, onInputChange, onSaveButtonClick,
+      filterInput } = this.props;
     return (
       <form>
         <label htmlFor="name-input">
@@ -116,6 +117,17 @@ class Form extends Component {
 
         </button>
 
+        <label htmlFor="filterInput">
+          Buscar Cartas
+          <input
+            type="text"
+            data-testid="name-filter"
+            value={ filterInput }
+            name="filterInput"
+            onChange={ onInputChange }
+          />
+        </label>
+
       </form>
     );
   }
@@ -133,6 +145,7 @@ Form.propTypes = {
   isSaveButtonDisabled: PropTypes.bool,
   onInputChange: PropTypes.func,
   onSaveButtonClick: PropTypes.func,
+  filterInput: PropTypes.string,
 }.isRequired;
 
 export default Form;

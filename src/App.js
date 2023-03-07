@@ -16,6 +16,7 @@ class App extends React.Component {
     isSaveButtonDisabled: true,
     cards: [],
     hasTrunfo: false,
+    filterInput: '',
   };
 
   veryfyInputs = () => {
@@ -94,9 +95,10 @@ class App extends React.Component {
   render() {
     const { cardName, cardDescription, cardAttr1, cardAttr2,
       cardAttr3, cardImage, cardRare, cardTrunfo, isSaveButtonDisabled, cards,
-      hasTrunfo } = this.state;
-    const cardsRender = cards.map((card, i) => (
-      <Card
+      hasTrunfo, filterInput } = this.state;
+    const cardsRender = cards.filter((card) => card
+      .name.includes(filterInput)).map((card, i) => (
+      (<Card
         key={ card.name }
         cardName={ card.name }
         cardDescription={ card.description }
@@ -108,7 +110,7 @@ class App extends React.Component {
         cardTrunfo={ card.superTrunfo }
         buttonOn
         buttonDelClick={ () => this.buttonDelClick(i) }
-      />
+      />)
     ));
     return (
       <div>
@@ -140,6 +142,8 @@ class App extends React.Component {
           buttonOn={ false }
         />
         {cardsRender}
+        {/* {filterInput !== '' ? cardsFilterRender : []} */}
+
       </div>
     );
   }
