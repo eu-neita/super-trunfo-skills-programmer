@@ -12,7 +12,7 @@ class Form extends Component {
     const { cardName, cardDescription, cardAttr1, cardAttr2,
       cardAttr3, cardImage, cardRare, cardTrunfo, hasTrunfo,
       isSaveButtonDisabled, onInputChange, onSaveButtonClick,
-      filterInput, filterInputRare } = this.props;
+      filterInput, filterInputRare, cardTrunfoFilter, filterDisable } = this.props;
     return (
       <form>
         <label htmlFor="name-input">
@@ -125,6 +125,7 @@ class Form extends Component {
             value={ filterInput }
             name="filterInput"
             onChange={ onInputChange }
+            disabled={ filterDisable }
           />
         </label>
 
@@ -135,6 +136,7 @@ class Form extends Component {
             data-testid="rare-filter"
             value={ filterInputRare }
             onChange={ onInputChange }
+            disabled={ filterDisable }
           >
             <option value="todas">todas</option>
             <option value="normal">normal</option>
@@ -142,6 +144,14 @@ class Form extends Component {
             <option value="muito raro">muito raro</option>
           </select>
         </label>
+
+        <input
+          type="checkbox"
+          data-testid="trunfo-filter"
+          checked={ cardTrunfoFilter }
+          name="cardTrunfoFilter"
+          onChange={ onInputChange }
+        />
 
       </form>
     );
@@ -162,6 +172,8 @@ Form.propTypes = {
   onSaveButtonClick: PropTypes.func,
   filterInput: PropTypes.string,
   filterInputRare: PropTypes.string,
+  cardTrunfoFilter: PropTypes.bool,
+  filterDisable: PropTypes.bool,
 }.isRequired;
 
 export default Form;

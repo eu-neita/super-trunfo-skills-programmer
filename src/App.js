@@ -18,6 +18,8 @@ class App extends React.Component {
     hasTrunfo: false,
     filterInput: '',
     filterInputRare: 'todas',
+    cardTrunfoFilter: false,
+    filterDisable: false,
   };
 
   veryfyInputs = () => {
@@ -46,7 +48,8 @@ class App extends React.Component {
     const input = type === 'checkbox' ? checked : value;
     this.setState({
       [name]: input,
-    }, () => this.setState({ isSaveButtonDisabled: this.veryfyInputs() }));
+    }, () => {this.veryfyFilterDisable() 
+    this.setState({ isSaveButtonDisabled: this.veryfyInputs() })});
   };
 
   veryfyTrunfo = () => {
@@ -93,27 +96,39 @@ class App extends React.Component {
     }), this.veryfyTrunfo);
   };
 
+  veryfyFilterDisable = () => {
+    const { cardTrunfoFilter } = this.state;
+    if (cardTrunfoFilter === true) {
+      this.setState({ filterDisable: true });
+    } else {
+      this.setState({ filterDisable: false });
+    }
+  };
+
   render() {
     const { cardName, cardDescription, cardAttr1, cardAttr2,
       cardAttr3, cardImage, cardRare, cardTrunfo, isSaveButtonDisabled, cards,
-      hasTrunfo, filterInput, filterInputRare } = this.state;
-    const cardsRender = cards.filter((card) => (filterInputRare === 'todas' ? card : card
-      .rare === filterInputRare)).filter((card) => card
-      .name.includes(filterInput)).map((card, i) => (
-      (<Card
-        key={ card.name }
-        cardName={ card.name }
-        cardDescription={ card.description }
-        cardAttr1={ card.attr1 }
-        cardAttr2={ card.attr2 }
-        cardAttr3={ card.attr3 }
-        cardImage={ card.image }
-        cardRare={ card.rare }
-        cardTrunfo={ card.superTrunfo }
-        buttonOn
-        buttonDelClick={ () => this.buttonDelClick(i) }
-      />)
-    ));
+      hasTrunfo, filterInput, filterInputRare, cardTrunfoFilter,
+      filterDisable } = this.state;
+    const cardsRender = cards.filter((card) => (cardTrunfoFilter === false ? card : card
+      .superTrunfo === cardTrunfoFilter))
+      .filter((card) => (filterInputRare === 'todas' ? card : card
+        .rare === filterInputRare)).filter((card) => card
+        .name.includes(filterInput)).map((card, i) => (
+        (<Card
+          key={ card.name }
+          cardName={ card.name }
+          cardDescription={ card.description }
+          cardAttr1={ card.attr1 }
+          cardAttr2={ card.attr2 }
+          cardAttr3={ card.attr3 }
+          cardImage={ card.image }
+          cardRare={ card.rare }
+          cardTrunfo={ card.superTrunfo }
+          buttonOn
+          buttonDelClick={ () => this.buttonDelClick(i) }
+        />)
+      ));
     return (
       <div>
         <h1>Tryunfo</h1>
@@ -130,6 +145,7 @@ class App extends React.Component {
           isSaveButtonDisabled={ isSaveButtonDisabled }
           onSaveButtonClick={ this.savedCards }
           hasTrunfo={ hasTrunfo }
+          filterDisable={ filterDisable }
         />
         <Card
           cardName={ cardName }
