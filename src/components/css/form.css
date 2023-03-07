@@ -1,0 +1,147 @@
+@import "https://fonts.googleapis.com/css2?family=Inter&display=swap";
+@import "https://fonts.googleapis.com/css2?family=Koulen&display=swap";
+
+* {
+  font-family: "Inter", sans-serif;
+  font-weight: 700;
+}
+
+body {
+  background-color: #36ffe1;
+}
+
+form {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+#create-card-form {
+  display: flex;
+  flex-direction: column;
+  padding: 12px;
+  border-radius: 12px;
+  margin-top: 24px;
+  width: 40%;
+  background-color: #64CFF7;
+  box-shadow: 1em 1em 0em #100c14;
+}
+
+#create-card-form button {
+  width: 100%;
+}
+
+
+#create-card-form div * {
+width: 100%;
+}
+
+#attr-div {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+#filter-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 12px;
+  border-radius: 12px;
+  margin-top: 24px;
+  width: 40%;
+  background-color: #CA7CD8;
+  box-shadow: 1em 1em 0em #100c14;
+}
+
+#filter-form div * {
+  width: 100%;
+}
+
+label {
+  margin-right: 8px;
+}
+
+input {
+  border: none;
+  border-radius: 5px;
+  padding: 5px 0px 5px;
+  box-shadow: 0.2em 0.2em 0em #100c14;
+}
+
+#filters-trunfo-div {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: center;
+  text-align: start;
+  width: 100%;
+  height: 20px;
+}
+
+#filters-trunfo-div input {
+  width: 20px;
+  box-shadow: 0em 0em 0em #100c14;
+}
+
+#filters-trunfo-div label {
+  width: 100px;
+}
+
+#trunfo-div {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: center;
+  text-align: start;
+  width: 100%;
+  height: 20px;
+}
+
+#trunfo-div input {
+  width: 20px;
+  box-shadow: 0em 0em 0em #100c14;
+}
+
+#trunfo-div label {
+  width: 150px;
+}
+
+div {
+  margin-bottom: 12px;
+}
+
+textarea {
+  border: none;
+  border-radius: 5px;
+  padding: 5px 0px 5px;
+  box-shadow: 0.2em 0.2em 0em #100c14;
+}
+
+select {
+  border: none;
+  border-radius: 5px;
+  padding: 5px 0px 5px;
+  box-shadow: 0.2em 0.2em 0em #100c14;
+}
+
+button {
+  border: none;
+  border-radius: 5px;
+  padding: 5px 0px 5px;
+  box-shadow: 0.2em 0.2em 0em #100c14;
+}
+
+button:hover {
+  color: #cfa6d7;
+  background-color: rgb(126, 124, 216);
+  transition: 0.2s;
+}
+
+h1 {
+  /* display: flex; */
+  color: #ffdd45;
+  text-shadow: 0.1em 0.1em 0em #100c14;
+  text-align: center;
+  width: 100%;
+  font-family: "Koulen", cursive;
+}

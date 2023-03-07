@@ -133,7 +133,7 @@ class App extends React.Component {
       ));
     return (
       <div>
-        <h1>Tryunfo</h1>
+        <h1>Trunfo</h1>
         <Form
           cardName={ cardName }
           cardDescription={ cardDescription }
@@ -161,7 +161,9 @@ class App extends React.Component {
           onInputChange={ this.handleInputChange }
           buttonOn={ false }
         />
-        {cardsRender}
+        <div id="all-cards">
+          {cardsRender}
+        </div>
       </div>
     );
   }
