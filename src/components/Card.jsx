@@ -26,13 +26,14 @@ class Card extends Component {
         <span data-testid="attr2-card" className="attr">{ cardAttr2 }</span>
         <span data-testid="attr3-card" className="attr">{ cardAttr3 }</span>
         <span data-testid="rare-card" className="attr-rare">{ cardRare }</span>
-        { cardTrunfo && <span
-          data-testid="trunfo-card"
-          className="attr-rare"
-        >
-          Super Trunfo
-
-        </span> }
+        { cardTrunfo && (
+          <span
+            data-testid="trunfo-card"
+            className="attr-rare"
+          >
+            Super Trunfo
+          </span>
+        ) }
         {buttonOn
         && (
           <button

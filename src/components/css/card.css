@@ -37,8 +37,8 @@
 }
 
 img {
-  max-width: 95%;
-  max-height: 90%;
+  width: 342px;
+  height: 202px;
   border-radius: 5px;
   border: #ff36b2 solid 5px;
 }
