@@ -48,8 +48,10 @@ class App extends React.Component {
     const input = type === 'checkbox' ? checked : value;
     this.setState({
       [name]: input,
-    }, () => {this.veryfyFilterDisable() 
-    this.setState({ isSaveButtonDisabled: this.veryfyInputs() })});
+    }, () => {
+      this.veryfyFilterDisable();
+      this.setState({ isSaveButtonDisabled: this.veryfyInputs() });
+    });
   };
 
   veryfyTrunfo = () => {
