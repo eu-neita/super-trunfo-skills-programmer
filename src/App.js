@@ -55,6 +55,15 @@ class App extends React.Component {
     }
   };
 
+  buttonDelClick = (cIndex) => {
+    this.setState((prevState) => ({
+      cards: prevState.cards.filter((_card, index) => index !== cIndex),
+    }));
+    this.setState((prevState) => ({
+      hasTrunfo: prevState.cards.some((card) => card.superTrunfo === true),
+    }));
+  };
+
   savedCards = (event) => {
     event.preventDefault();
     const { cardName, cardDescription, cardImage, cardRare,
@@ -86,7 +95,7 @@ class App extends React.Component {
     const { cardName, cardDescription, cardAttr1, cardAttr2,
       cardAttr3, cardImage, cardRare, cardTrunfo, isSaveButtonDisabled, cards,
       hasTrunfo } = this.state;
-    const cardsRender = cards.map((card) => (
+    const cardsRender = cards.map((card, i) => (
       <Card
         key={ card.name }
         cardName={ card.name }
@@ -97,6 +106,8 @@ class App extends React.Component {
         cardImage={ card.image }
         cardRare={ card.rare }
         cardTrunfo={ card.superTrunfo }
+        buttonOn
+        buttonDelClick={ () => this.buttonDelClick(i) }
       />
     ));
     return (
@@ -126,6 +137,7 @@ class App extends React.Component {
           cardRare={ cardRare }
           cardTrunfo={ cardTrunfo }
           onInputChange={ this.handleInputChange }
+          buttonOn={ false }
         />
         {cardsRender}
       </div>

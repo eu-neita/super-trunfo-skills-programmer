@@ -8,7 +8,7 @@ class Card extends Component {
   // state = {  }
   render() {
     const { cardName, cardDescription, cardAttr1, cardAttr2,
-      cardAttr3, cardImage, cardRare, cardTrunfo } = this.props;
+      cardAttr3, cardImage, cardRare, cardTrunfo, buttonOn, buttonDelClick } = this.props;
     return (
       <div>
         <span data-testid="name-card">{ cardName }</span>
@@ -19,7 +19,15 @@ class Card extends Component {
         <span data-testid="attr3-card">{ cardAttr3 }</span>
         <span data-testid="rare-card">{ cardRare }</span>
         { cardTrunfo && <span data-testid="trunfo-card">Super Trunfo</span> }
-
+        {buttonOn
+        && (
+          <button
+            data-testid="delete-button"
+            onClick={ buttonDelClick }
+          >
+            Excluir
+          </button>
+        )}
       </div>
     );
   }
@@ -33,6 +41,7 @@ Card.propTypes = {
   cardImage: PropTypes.string,
   cardRare: PropTypes.string,
   cardTrunfo: PropTypes.bool,
+  buttonOn: PropTypes.bool,
 }.isRequired;
 
 export default Card;
