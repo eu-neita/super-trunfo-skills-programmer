@@ -142,8 +142,6 @@ class App extends React.Component {
           buttonOn={ false }
         />
         {cardsRender}
-        {/* {filterInput !== '' ? cardsFilterRender : []} */}
-
       </div>
     );
   }
