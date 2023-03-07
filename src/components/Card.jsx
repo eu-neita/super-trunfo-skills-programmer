@@ -19,6 +19,7 @@ class Card extends Component {
         <span data-testid="attr3-card">{ cardAttr3 }</span>
         <span data-testid="rare-card">{ cardRare }</span>
         { cardTrunfo && <span data-testid="trunfo-card">Super Trunfo</span> }
+
       </div>
     );
   }

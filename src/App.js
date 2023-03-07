@@ -97,7 +97,6 @@ class App extends React.Component {
         cardImage={ card.image }
         cardRare={ card.rare }
         cardTrunfo={ card.superTrunfo }
-        // onInputChange={ this.handleInputChange }
       />
     ));
     return (
@@ -116,6 +115,17 @@ class App extends React.Component {
           isSaveButtonDisabled={ isSaveButtonDisabled }
           onSaveButtonClick={ this.savedCards }
           hasTrunfo={ hasTrunfo }
+        />
+        <Card
+          cardName={ cardName }
+          cardDescription={ cardDescription }
+          cardAttr1={ cardAttr1 }
+          cardAttr2={ cardAttr2 }
+          cardAttr3={ cardAttr3 }
+          cardImage={ cardImage }
+          cardRare={ cardRare }
+          cardTrunfo={ cardTrunfo }
+          onInputChange={ this.handleInputChange }
         />
         {cardsRender}
       </div>
