@@ -11,7 +11,7 @@ class Form extends Component {
     return (
       <form>
         <section id="create-card-form">
-          <h1>Criar Carta</h1>
+          <h2>Criar Carta</h2>
           <div>
             <label htmlFor="name-input">
               Nome
@@ -139,7 +139,7 @@ class Form extends Component {
         </section>
 
         <section id="filter-form">
-          <h1>Pesquisa</h1>
+          <h2>Pesquisa</h2>
           <div className="filters-divs">
             <label htmlFor="filterInput">
               Buscar Cartas
