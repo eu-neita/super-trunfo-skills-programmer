@@ -1,3 +1,5 @@
 **/*.test.js 
 src/index.js
-src/components/css
+src/components/css/app.css
+src/components/css/card.css
+src/components/css/form.css
